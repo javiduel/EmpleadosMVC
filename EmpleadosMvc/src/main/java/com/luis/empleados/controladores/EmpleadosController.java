@@ -40,6 +40,8 @@ public String detalle(Model modelo, HttpServletRequest request){
 	return "detalle";
 }
 
+
+
 }
 
 

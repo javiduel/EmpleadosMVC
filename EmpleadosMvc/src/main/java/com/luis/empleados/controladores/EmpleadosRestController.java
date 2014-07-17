@@ -1,5 +1,9 @@
 package com.luis.empleados.controladores;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,4 +28,14 @@ public class EmpleadosRestController {
 	return e;  	
 		
 	      }
-}
+
+@RequestMapping(method=RequestMethod.GET, value="/buscar/{texto}")
+   public @ResponseBody List<Empleado> buscar (@PathVariable String texto){
+	Map<String,Object> params=new HashMap();//una lista clave valor 
+	params.put("texto","%"+texto+"%");//da igual la posicion de la palabra que ponga si buscar a luis sera todo que contenga luis
+	List<Empleado> l=dao.find("empleado.buscador",params);
+	return l;
+   }
+	
+ }
+                
