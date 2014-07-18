@@ -17,41 +17,83 @@ Buscar:<input type="text" id="txtBuscar" placeholder="pon tu busqueda">
  <tr>
    <td>${empleado.nombre }</td>
    <td>${empleado.salario }</td>
-    <td><a href="detalle.html?id=${empleado.idEmpleado }"> Ver detalle</a></td>
-  
-    <td><a href="#" id="lnkDetalle" onclick="evento(${empleado.idEmpleado})"> detalle Ajas</a></td>
+    <td><a href="detalle.html?id=${empleado.idEmpleado }"> Ver detalle</a>
+    <a href="#" id="lnkDetalle" onclick="evento(${empleado.idEmpleado})"> detalle Ajas</a>
+    <a href="#" id="lnkBorrar" onclick="borrar(${empleado.idEmpleado})">Borrar</a>
+    </td>
   </tr>
    </c:forEach>
 </table>
 <div id="divDetalle"></div>
 <script type="text/javascript">
-function buscar(){
+function borrar(id){
 
-	var tx=$("#txtBuscar").val();
-	var url="empleado/buscar/"+tx;
-	$.get(url,function(res){
-            var  tabla=$("#tblDatos");
-            $("#tblDatos tr").each(function(){
-                 $(this).remove();
-                });
-             
-           
-                   for(var i=0;i<res.length;i++){
-                       var h="<tr>";
-                        h+="<td>"+res[i].nombre+"</td>";
-                        h+="<td>"+res[i].salario+"</td>";
-                        h+="<td><a href='detalle.html?id="+res[i].idEmpleado+"'>Detalle</a>";
-                        h+="<a href='#' onclick='evento("+res[i].idEmpleado+")'>Detalle ajax</a></td>";
-                        h+="</tr>";
-                        tabla.append(h);
-	         } 
-                        
+	var datos={idEmpleado:id};
 
-      		});
-	
+	var datosPasar=JSON.stringify(datos);
+
+	$.ajax(
+			"empleado",{
+				data:datosPasar,
+				method: "DELETE",
+				contentType: "application/json",
+				success: function(res){
+					alert("Empleado borrado correctamente");
+					$("#txtBuscar").text("");
+					buscar();
+
+					},
+				error: function(res){
+					alert(JSON.stringify(res));
+					}
+
+
+				}
+			);
+
+
+
+
 }
 
+function buscar(){
+	var tx=$("#txtBuscar").val();
+	if(tx=="")
+		tx="NoBuscoNada";
+	var url="empleado/buscar/"+tx;	
 
+	$.get(url,function(res){
+
+		var tabla=$("#tblDatos");
+
+		$("#tblDatos tr").each(function(){
+				$(this).remove();
+
+			});
+
+
+
+		for(var i=0;i<res.length;i++){
+			var h="<tr>";
+			h+="<td>"+res[i].nombre+"</td>";
+			h+="<td>"+res[i].salario+"</td>";
+			h+="<td><a href='detalle.html?id="+
+					res[i].idEmpleado+"'>Detalle</a>";
+			h+="<a href='#' onclick='evento("+
+				res[i].idEmpleado+")'>Detalle ajax</a>";
+			h+="<a href='#' onclick='borrar("+
+				res[i].idEmpleado+")'>Borrar</a></td>";
+			h+="</tr>";	
+			tabla.append(h);
+			}
+
+
+
+		
+
+		});
+
+}
 
 
 function evento(id){
