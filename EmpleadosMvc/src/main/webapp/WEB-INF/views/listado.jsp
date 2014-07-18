@@ -11,9 +11,9 @@
 
 <body>
 Buscar:<input type="text" id="txtBuscar" placeholder="pon tu busqueda">
-<input type="button" id="btnBuscar" value="buscar">
+<input type="button" id="btnBuscar" value="buscar" onclick="buscar()">
 <table id="tblDatos">
-<c:forEach items="${empleados}" var="empleado">
+<c:forEach items="${empleados }" var="empleado">
  <tr>
    <td>${empleado.nombre }</td>
    <td>${empleado.salario }</td>
@@ -28,10 +28,10 @@ Buscar:<input type="text" id="txtBuscar" placeholder="pon tu busqueda">
 function buscar(){
 
 	var tx=$("#txtBuscar").val();
-	var url="empleado/buscar/"+txt;
-	$.get(url,function(res)){
+	var url="empleado/buscar/"+tx;
+	$.get(url,function(res){
             var  tabla=$("#tblDatos");
-            $("tr").each(function()){
+            $("#tblDatos tr").each(function(){
                  $(this).remove();
                 });
              
