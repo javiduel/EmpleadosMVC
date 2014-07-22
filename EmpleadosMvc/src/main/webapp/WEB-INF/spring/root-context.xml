@@ -80,7 +80,9 @@ value="jdbc:mysql://luisgilpruebas.cloudapp.net:3306/teide2014"/>
  <bean id="daoDepartamento" class="com.luis.empleados.repositorios.RepositorioDepartamento">
      <property name="sessionFactory" ref="sessionFactory" />
 </bean>
-
+ <bean id="daoIdioma" class="com.luis.empleados.repositorios.Repositorioidiomas">
+     <property name="sessionFactory" ref="sessionFactory" />
+</bean>
 
 
  <tx:annotation-driven transaction-manager="txManager"  

@@ -20,6 +20,7 @@ import com.luis.empleado.modelo.Puesto;
 import com.luis.empleado.modelo.viewforms.EmpleadoViewForm;
 import com.luis.empleados.repositorios.RepositorioDepartamento;
 import com.luis.empleados.repositorios.RepositorioEmpleados;
+import com.luis.empleados.repositorios.RepositorioIdiomas;
 import com.luis.empleados.repositorios.RepositorioPuesto;
 
 
@@ -32,7 +33,8 @@ public class EmpleadosAltaController{
       RepositorioPuesto daoPuesto;
       @Autowired//inyecta el repositorio en la clase
       RepositorioDepartamento daoDepartamento;
-      
+      @Autowired//inyecta el repositorio en la clase
+      RepositorioIdiomas daoIdiomas;
      
       
       
@@ -42,9 +44,10 @@ public class EmpleadosAltaController{
     	 modelo.addAttribute("empleado", empleado);//se lo añadimos al modelo y mando a alta 
     	 Map<Integer,String> lp=daoPuesto.getMapaOptions();//recibe la información de los repositorios puesto
     	 Map<Integer,String> ld=daoDepartamento.getMapaOptions();//recibe la información de los repositorios departamentos
+    	 Map<Integer,String> li=daoIdiomas.getMapaOptions();
     	 modelo.addAttribute("puestos", lp);
     	 modelo.addAttribute("departamentos", ld);
-    	 
+    	 modelo.addAttribute("idiomas", li);
     	 return "alta";
       }
       @RequestMapping(method=RequestMethod.POST) 
@@ -52,8 +55,10 @@ public class EmpleadosAltaController{
     	  if(resultado.hasErrors()){
     		  Map<Integer,String> lp=daoPuesto.getMapaOptions();//recibe la información de los repositorios puesto
     	      Map<Integer,String> ld=daoDepartamento.getMapaOptions();//r  
+    	      Map<Integer,String> li=daoIdiomas.getMapaOptions();
     	      request.setAttribute("puestos", lp);
     	      request.setAttribute("departamentos", ld);
+    	      request.setAttribute("Idiomas", li);
     	      return "alta";
     	      }
           Empleado emple=empleado.getEmpleado();

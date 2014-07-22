@@ -14,7 +14,7 @@ public class RepositorioEmpleados extends Repositorio<Empleado> {
 
 		Hibernate.initialize(e.getDepartamento());//inicializar la sesion para conseguir el departamento
 		Hibernate.initialize(e.getPuesto());//inicializar la sesion para conseguir el puesto
-
+        Hibernate.initialize(e.getIdiomas());
 		return e;
 	}
 }
