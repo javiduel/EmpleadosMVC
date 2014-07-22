@@ -6,9 +6,11 @@
 </head>
 <body>
 <h1>
-	Hello world!  
+Bienvenido Departamento de Recursos Humanos
 </h1>
+<br />
+<a href="listado.html"> Ver listado de Empleados</a>
 
-<P>  The time on the server is ${serverTime}. </P>
+
 </body>
 </html>

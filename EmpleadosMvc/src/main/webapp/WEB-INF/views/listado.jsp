@@ -13,6 +13,8 @@
 Buscar:<input type="text" id="txtBuscar" placeholder="pon tu busqueda">
 <input type="button" id="btnBuscar" value="buscar" onclick="buscar()">
 <table id="tblDatos">
+<br />
+<a href="altaEmpleado.html">Añadir Empleado</a>
 <c:forEach items="${empleados }" var="empleado">
  <tr>
    <td>${empleado.nombre }</td>

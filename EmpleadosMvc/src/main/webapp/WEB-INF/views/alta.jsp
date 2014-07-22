@@ -10,7 +10,7 @@
 </head>
 <body>
      Datos del empleado<br />
-   <form:form method="post commandName"="empleado">
+   <form:form method="post" commandName="empleado">
       Nombre:<form:input path="nombre"/><br/>
       Salario<form:input path="salario"/><br/>
       Puesto:<form:select path="idPuesto"><form:options items="${puestos}"/></form:select><br/>
