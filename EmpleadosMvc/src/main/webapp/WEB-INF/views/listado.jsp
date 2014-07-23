@@ -21,7 +21,7 @@ Buscar:<input type="text" id="txtBuscar" placeholder="pon tu busqueda">
    <td>${empleado.salario }</td>
     <td><a href="detalle.html?id=${empleado.idEmpleado }"> Ver detalle</a>
     <a href="#" id="lnkDetalle" onclick="evento(${empleado.idEmpleado})"> detalle Ajas</a>
-    <td><a href="ModificarEmpleado.html?id=${empleado.idEmpleado }"> Modificar</a>
+    <td><a href="ModificarEmpleado.html/${empleado.idEmpleado }"> Modificar</a>
     <a href="#" id="lnkBorrar" onclick="borrar(${empleado.idEmpleado})">Borrar</a>
     </td>
   </tr>
